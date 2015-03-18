@@ -55,7 +55,7 @@ exports.generatePdf = function(data, templatePath,callback) {
   var tempName = temp.path({suffix: '.pdf'});
   var tempNameResult = temp.path({suffix: '.pdf'});
 
-  child = spawn("pdftk", ["app/"+templatePath,"fill_form","-","output",tempName,"flatten"]);
+  child = spawn("pdftk", [templatePath,"fill_form","-","output",tempName,"flatten"]);
 
   child.on('exit', function(code) {
     var cmd = "gs -dNOCACHE -sDEVICE=pdfwrite -sOutputFile="+tempNameResult +" -dbatch -dNOPAUSE -dQUIET  " + tempName +"  -c quit"
